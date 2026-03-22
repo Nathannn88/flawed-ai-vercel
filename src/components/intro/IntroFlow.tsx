@@ -5,6 +5,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useGameStore } from '@/store/gameStore';
+import HavenBackground from '@/components/chat/HavenBackground';
 
 /** 打字机效果文字显示 */
 function TypewriterText({ text, onComplete }: { text: string; onComplete?: () => void }) {
@@ -157,18 +158,11 @@ export default function IntroFlow({ onComplete }: IntroFlowProps) {
   }, [skipIntro, onComplete]);
 
   return (
-    <div className="fixed inset-0 bg-haven-950 flex flex-col items-center justify-center px-4 sm:px-6 z-content">
-      {/* 温暖环境光 — Haven 暖辉 */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-            radial-gradient(ellipse at 50% 50%, rgba(245,166,35,0.10) 0%, rgba(255,140,90,0.04) 40%, transparent 65%),
-            radial-gradient(ellipse at 30% 70%, rgba(200,140,60,0.06) 0%, transparent 50%),
-            radial-gradient(ellipse at 70% 30%, rgba(220,160,80,0.04) 0%, transparent 45%)
-          `,
-        }}
-      />
+    <div className="fixed inset-0 flex flex-col items-center justify-center px-4 sm:px-6 z-content">
+      {/* Haven 风格风景背景 */}
+      <HavenBackground />
+      {/* 额外遮罩层 — 确保文字可读 */}
+      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
       <AnimatePresence mode="wait">
         <motion.div
           key={step}

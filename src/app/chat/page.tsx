@@ -16,7 +16,9 @@ import GiftModal from '@/components/chat/GiftModal';
 import EventModal from '@/components/chat/EventModal';
 import IntroFlow from '@/components/intro/IntroFlow';
 import ParticleCanvas from '@/components/landing/ParticleCanvas';
-import CompanionFloat from '@/components/chat/CompanionFloat';
+import HavenBackground from '@/components/chat/HavenBackground';
+import PoetFigure2D from '@/components/chat/PoetFigure2D';
+import SquarePet from '@/components/chat/SquarePet';
 
 export default function ChatPage() {
   return (
@@ -88,26 +90,16 @@ function ChatPageInner() {
 
   return (
     <div
-      className="h-dvh flex flex-col bg-haven-900 relative overflow-hidden"
+      className="h-dvh flex flex-col relative overflow-hidden"
       data-phase={character.currentPhase}
     >
-      {/* 温暖环境光底层 — Haven 暖辉 */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-            radial-gradient(ellipse at 50% 80%, rgba(255,180,100,0.10) 0%, transparent 55%),
-            radial-gradient(ellipse at 20% 20%, rgba(200,150,80,0.05) 0%, transparent 45%),
-            radial-gradient(ellipse at 80% 40%, rgba(220,170,100,0.04) 0%, transparent 40%),
-            linear-gradient(180deg, rgba(30,25,18,0) 0%, rgba(40,32,20,0.3) 100%)
-          `,
-        }}
-      />
+      {/* Haven 风格风景背景 */}
+      <HavenBackground />
 
       {/* 背景粒子 */}
       <ParticleCanvas
         colors={particleColors[character.currentPhase] || particleColors.intro}
-        count={30}
+        count={20}
         showLines={false}
       />
 
@@ -173,8 +165,11 @@ function ChatPageInner() {
           {/* 事件弹窗 */}
           <EventModal eventId={pendingEvent} onClose={clearEvent} />
 
-          {/* 2D 伴生体 — 诗人 + 方形宠物 */}
-          <CompanionFloat />
+          {/* 诗人 2D 立绘 */}
+          <PoetFigure2D />
+
+          {/* 方形伴生体 — 可拖拽、展示模式可旋转 */}
+          <SquarePet />
 
           {/* Toast 提示 */}
           <AnimatePresence>
