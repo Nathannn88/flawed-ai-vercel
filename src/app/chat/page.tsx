@@ -16,12 +16,6 @@ import GiftModal from '@/components/chat/GiftModal';
 import EventModal from '@/components/chat/EventModal';
 import IntroFlow from '@/components/intro/IntroFlow';
 import ParticleCanvas from '@/components/landing/ParticleCanvas';
-import dynamic from 'next/dynamic';
-
-const CompanionScene = dynamic(
-  () => import('@/components/companion/CompanionScene').then(m => ({ default: m.CompanionScene })),
-  { ssr: false },
-);
 
 export default function ChatPage() {
   return (
@@ -165,8 +159,7 @@ function ChatPageInner() {
           {/* 事件弹窗 */}
           <EventModal eventId={pendingEvent} onClose={clearEvent} />
 
-          {/* 3D 伴生体 */}
-          <CompanionScene />
+          {/* 3D 伴生体 — 暂不上线（react-three/fiber 版本兼容问题） */}
 
           {/* Toast 提示 */}
           <AnimatePresence>
