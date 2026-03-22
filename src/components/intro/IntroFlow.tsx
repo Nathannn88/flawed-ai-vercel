@@ -157,7 +157,14 @@ export default function IntroFlow({ onComplete }: IntroFlowProps) {
   }, [skipIntro, onComplete]);
 
   return (
-    <div className="fixed inset-0 bg-abyss-950 flex flex-col items-center justify-center px-4 sm:px-6 z-content">
+    <div className="fixed inset-0 bg-haven-950 flex flex-col items-center justify-center px-4 sm:px-6 z-content">
+      {/* 温暖环境光 */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at 50% 40%, rgba(245,166,35,0.07) 0%, rgba(255,140,90,0.02) 40%, transparent 70%)',
+        }}
+      />
       <AnimatePresence mode="wait">
         <motion.div
           key={step}

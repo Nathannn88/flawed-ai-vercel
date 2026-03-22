@@ -16,6 +16,7 @@ import GiftModal from '@/components/chat/GiftModal';
 import EventModal from '@/components/chat/EventModal';
 import IntroFlow from '@/components/intro/IntroFlow';
 import ParticleCanvas from '@/components/landing/ParticleCanvas';
+import CompanionFloat from '@/components/chat/CompanionFloat';
 
 export default function ChatPage() {
   return (
@@ -87,9 +88,17 @@ function ChatPageInner() {
 
   return (
     <div
-      className="h-dvh flex flex-col bg-abyss-900 relative overflow-hidden"
+      className="h-dvh flex flex-col bg-haven-900 relative overflow-hidden"
       data-phase={character.currentPhase}
     >
+      {/* 温暖环境光底层 */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at 50% 70%, rgba(255,180,100,0.05) 0%, transparent 60%), radial-gradient(ellipse at 20% 30%, rgba(200,150,80,0.03) 0%, transparent 50%)',
+        }}
+      />
+
       {/* 背景粒子 */}
       <ParticleCanvas
         colors={particleColors[character.currentPhase] || particleColors.intro}
@@ -97,7 +106,7 @@ function ChatPageInner() {
         showLines={false}
       />
 
-      {/* 环境光 — 阶段变化时平滑过渡 */}
+      {/* 阶段环境光 — 平滑过渡 */}
       <div
         className="absolute inset-0 pointer-events-none z-particles transition-colors duration-1000"
         style={{ backgroundColor: 'var(--ambient-color)' }}
@@ -159,7 +168,8 @@ function ChatPageInner() {
           {/* 事件弹窗 */}
           <EventModal eventId={pendingEvent} onClose={clearEvent} />
 
-          {/* 3D 伴生体 — 暂不上线（react-three/fiber 版本兼容问题） */}
+          {/* 2D 伴生体 — 诗人 + 方形宠物 */}
+          <CompanionFloat />
 
           {/* Toast 提示 */}
           <AnimatePresence>
