@@ -91,11 +91,16 @@ function ChatPageInner() {
       className="h-dvh flex flex-col bg-haven-900 relative overflow-hidden"
       data-phase={character.currentPhase}
     >
-      {/* 温暖环境光底层 */}
+      {/* 温暖环境光底层 — Haven 暖辉 */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at 50% 70%, rgba(255,180,100,0.05) 0%, transparent 60%), radial-gradient(ellipse at 20% 30%, rgba(200,150,80,0.03) 0%, transparent 50%)',
+          background: `
+            radial-gradient(ellipse at 50% 80%, rgba(255,180,100,0.10) 0%, transparent 55%),
+            radial-gradient(ellipse at 20% 20%, rgba(200,150,80,0.05) 0%, transparent 45%),
+            radial-gradient(ellipse at 80% 40%, rgba(220,170,100,0.04) 0%, transparent 40%),
+            linear-gradient(180deg, rgba(30,25,18,0) 0%, rgba(40,32,20,0.3) 100%)
+          `,
         }}
       />
 

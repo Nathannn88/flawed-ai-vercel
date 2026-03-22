@@ -158,11 +158,15 @@ export default function IntroFlow({ onComplete }: IntroFlowProps) {
 
   return (
     <div className="fixed inset-0 bg-haven-950 flex flex-col items-center justify-center px-4 sm:px-6 z-content">
-      {/* 温暖环境光 */}
+      {/* 温暖环境光 — Haven 暖辉 */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at 50% 40%, rgba(245,166,35,0.07) 0%, rgba(255,140,90,0.02) 40%, transparent 70%)',
+          background: `
+            radial-gradient(ellipse at 50% 50%, rgba(245,166,35,0.10) 0%, rgba(255,140,90,0.04) 40%, transparent 65%),
+            radial-gradient(ellipse at 30% 70%, rgba(200,140,60,0.06) 0%, transparent 50%),
+            radial-gradient(ellipse at 70% 30%, rgba(220,160,80,0.04) 0%, transparent 45%)
+          `,
         }}
       />
       <AnimatePresence mode="wait">
