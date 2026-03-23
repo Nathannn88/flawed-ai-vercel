@@ -46,12 +46,12 @@ export default function InputBar({ onSend, onGiftClick, disabled = false }: Inpu
   const hasInput = input.trim().length > 0;
 
   return (
-    <div className="glass-panel border-t border-white/[0.06] px-3 py-3 z-input shrink-0">
+    <div className="bg-white/30 backdrop-blur-[20px] border-t border-white/40 px-3 py-3 z-input shrink-0">
       <div className="max-w-3xl mx-auto flex items-end gap-3">
         {/* 送礼按钮 */}
         <motion.button
           onClick={onGiftClick}
-          className="w-10 h-10 flex items-center justify-center rounded-[12px] text-amber-500 hover:text-amber-400 hover:bg-amber-500/[0.06] transition-all shrink-0 focus-visible:outline-2 focus-visible:outline-amber-500 focus-visible:outline-offset-2"
+          className="w-10 h-10 flex items-center justify-center rounded-[12px] text-amber-700 hover:text-amber-600 hover:bg-white/20 transition-all shrink-0 focus-visible:outline-2 focus-visible:outline-amber-500 focus-visible:outline-offset-2"
           whileTap={{ scale: 0.9 }}
           aria-label="送礼"
           title="送礼"
@@ -73,7 +73,7 @@ export default function InputBar({ onSend, onGiftClick, disabled = false }: Inpu
           onKeyDown={handleKeyDown}
           rows={1}
           disabled={disabled}
-          className="input-chat flex-1 min-h-[40px] max-h-[120px] resize-none"
+          className="flex-1 min-h-[40px] max-h-[120px] resize-none bg-white/40 border border-white/50 rounded-[20px] px-[18px] py-2.5 text-body text-gray-800 font-body placeholder:text-gray-500 transition-all duration-200 focus:border-white/70 focus:outline-none focus:shadow-[0_0_12px_rgba(255,255,255,0.2)]"
           placeholder="说点什么..."
         />
 
@@ -83,8 +83,8 @@ export default function InputBar({ onSend, onGiftClick, disabled = false }: Inpu
           disabled={!hasInput || disabled}
           className={`w-10 h-10 flex items-center justify-center rounded-[12px] transition-all shrink-0 ${
             hasInput && !disabled
-              ? 'text-jade-500 hover:bg-jade-500/[0.06]'
-              : 'text-txt-muted cursor-not-allowed'
+              ? 'text-emerald-700 hover:bg-white/20'
+              : 'text-gray-400 cursor-not-allowed'
           }`}
           whileTap={hasInput && !disabled ? { scale: 0.9 } : undefined}
           aria-label="发送"

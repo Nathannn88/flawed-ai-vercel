@@ -37,16 +37,6 @@ const config: Config = {
           400: '#E84855',
           500: '#C73E5C',
         },
-        // Haven 暖暗色系 — Intro / Chat 页面温暖暗背景
-        haven: {
-          950: '#12100C',
-          900: '#1A1611',
-          800: '#231E17',
-          700: '#2E271E',
-          600: '#3A3125',
-          500: '#4A3E30',
-          400: '#5A4D3C',
-        },
         // Haven 暖色系 — Landing Page 专用
         warm: {
           50: '#FFFBF5',
@@ -143,9 +133,6 @@ const config: Config = {
         'gradient-full': 'linear-gradient(135deg, #00E5A0, #FFB347, #C73E5C)',
         'gradient-abyss': 'linear-gradient(180deg, #060D1A 0%, #0B1426 50%, #111D38 100%)',
         'gradient-abyss-radial': 'radial-gradient(ellipse at center, #162447 0%, #0B1426 70%)',
-        'gradient-haven-dark': 'linear-gradient(180deg, #110E0A 0%, #140F09 40%, #1A1610 100%)',
-        'gradient-haven-glow': 'radial-gradient(ellipse at 50% 60%, rgba(255,180,100,0.06) 0%, transparent 70%)',
-        'gradient-haven-intro': 'radial-gradient(ellipse at 50% 40%, rgba(245,166,35,0.08) 0%, rgba(255,140,90,0.03) 40%, transparent 70%)',
         'gradient-warm': 'linear-gradient(180deg, #FFF8F0 0%, #FFE8C8 30%, #FFCB8A 60%, #FFB05A 100%)',
         'gradient-golden-hour': 'linear-gradient(180deg, #87CEEB 0%, #FFD6A0 40%, #FF8C5A 70%, #E67A3C 100%)',
         'gradient-warm-radial': 'radial-gradient(ellipse at 50% 40%, rgba(255,200,120,0.30) 0%, transparent 70%)',

@@ -64,7 +64,7 @@
   }
 
   body {
-    background-color: #1A1611;
+    background-color: #0B1426;
     color: #E0E6ED;
     font-family: var(--font-body), 'Sora', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -104,15 +104,15 @@
 
 @layer components {
   .glass-panel {
-    @apply bg-haven-900/80 backdrop-blur-[16px] border border-white/[0.08] shadow-glass;
+    @apply bg-abyss-900/80 backdrop-blur-[20px] border border-white/[0.10] shadow-glass;
   }
 
   .glass-panel-elevated {
-    @apply bg-haven-800/85 backdrop-blur-[24px] border border-white/[0.12] shadow-glass-elevated;
+    @apply bg-abyss-800/90 backdrop-blur-[28px] border border-white/[0.14] shadow-glass-elevated;
   }
 
   .glass-panel-light {
-    @apply bg-haven-900/60 backdrop-blur-[12px] border border-white/[0.06];
+    @apply bg-abyss-900/60 backdrop-blur-[16px] border border-white/[0.08];
   }
 
   .bubble-cinis {
@@ -156,13 +156,13 @@
   }
 
   .input-chat {
-    @apply bg-white/[0.04] border border-white/[0.06]
+    @apply bg-white/[0.08] border border-white/[0.10]
            rounded-[20px] px-[18px] py-2.5
            text-body text-txt-primary font-body
            placeholder:text-txt-muted
            transition-all duration-200
            focus:border-jade-500/40 focus:outline-none
-           focus:shadow-[0_0_8px_rgba(0,229,160,0.10)];
+           focus:shadow-[0_0_12px_rgba(0,229,160,0.12)];
   }
 
   .spectrum-chord {

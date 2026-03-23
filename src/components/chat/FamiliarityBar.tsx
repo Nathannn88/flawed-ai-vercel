@@ -67,7 +67,6 @@ export default function FamiliarityBar() {
         <motion.div
           className="absolute top-1/2 -translate-y-1/2 w-1 h-1 rounded-full animate-dot-pulse"
           style={{
-            left: `${percentage}%`,
             backgroundColor: 'var(--phase-primary)',
             color: 'var(--phase-primary)',
           }}

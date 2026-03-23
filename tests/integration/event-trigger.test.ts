@@ -100,6 +100,7 @@ describe('事件触发集成', () => {
   it('事件触发后 system prompt 包含事件指令', () => {
     const store = useGameStore.getState();
     store.setUserName('测试');
+    store.triggerEvent('event-a-first-resonance');
     store.triggerEvent('event-b-rift');
     store.updateFamiliarityValue(55);
 
@@ -114,7 +115,7 @@ describe('事件触发集成', () => {
     const prompt = buildSystemPrompt(gameState);
 
     expect(prompt).toContain('裂痕');
-    expect(prompt).toContain('共振衰减');
+    expect(prompt).toContain('异质世界');
   });
 
   it('四个阈值事件按正确顺序排列', () => {

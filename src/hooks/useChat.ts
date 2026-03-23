@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { useGameStore } from '@/store/gameStore';
 import { buildSystemPrompt, buildMessages } from '@/lib/prompt-engine';
 import { checkEventTrigger } from '@/lib/event-system';
@@ -30,6 +30,13 @@ export function useChat(): UseChatReturn {
   const errorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const store = useGameStore;
+
+  // 组件卸载时清理 errorTimer，防止内存泄漏
+  useEffect(() => {
+    return () => {
+      if (errorTimerRef.current) clearTimeout(errorTimerRef.current);
+    };
+  }, []);
 
   const clearEvent = useCallback(() => {
     setPendingEvent(null);

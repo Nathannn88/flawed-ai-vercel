@@ -18,10 +18,10 @@ describe('自我介绍流程集成', () => {
 
   it('设置用户名后正确保存', () => {
     const store = useGameStore.getState();
-    store.setUserName('烬渊测试者');
+    store.setUserName('栖迟测试者');
 
     const after = useGameStore.getState();
-    expect(after.user.name).toBe('烬渊测试者');
+    expect(after.user.name).toBe('栖迟测试者');
   });
 
   it('保存介绍回答后正确存储', () => {
@@ -94,6 +94,59 @@ describe('自我介绍流程集成', () => {
 
     const after = useGameStore.getState();
     expect(after.user.introAnswers.color).toBe('蓝色');
+  });
+
+  it('跳过介绍后标记完成并设置默认名', () => {
+    const store = useGameStore.getState();
+    store.skipIntro();
+
+    const after = useGameStore.getState();
+    expect(after.user.introCompleted).toBe(true);
+    expect(after.user.name).toBe('旅人');
+    expect(Object.keys(after.user.introAnswers)).toHaveLength(0);
+  });
+
+  it('跳过介绍后可以正常发送聊天消息', () => {
+    const store = useGameStore.getState();
+    store.skipIntro();
+
+    store.sendMessage('跳过后的第一条消息', '你好，旅人');
+
+    const after = useGameStore.getState();
+    expect(after.chatHistory).toHaveLength(2);
+    expect(after.user.name).toBe('旅人');
+    expect(after.character.totalWordsFromUser).toBeGreaterThan(0);
+  });
+
+  it('跳过介绍后 prompt 使用默认名', () => {
+    const store = useGameStore.getState();
+    store.skipIntro();
+
+    const state = useGameStore.getState();
+    const gameState = {
+      user: state.user,
+      character: state.character,
+      economy: state.economy,
+      chatHistory: state.chatHistory,
+      meta: state.meta,
+    };
+    const prompt = buildSystemPrompt(gameState);
+
+    expect(prompt).toContain('旅人');
+  });
+
+  it('跳过介绍后存档/读档保持一致', () => {
+    const store = useGameStore.getState();
+    store.skipIntro();
+
+    const json = store.exportState();
+    useGameStore.getState().resetState();
+    useGameStore.getState().importState(json);
+
+    const restored = useGameStore.getState();
+    expect(restored.user.name).toBe('旅人');
+    expect(restored.user.introCompleted).toBe(true);
+    expect(Object.keys(restored.user.introAnswers)).toHaveLength(0);
   });
 
   it('介绍信息在存档/读档后保持一致', () => {

@@ -15,10 +15,12 @@ import FamiliarityBar from '@/components/chat/FamiliarityBar';
 import GiftModal from '@/components/chat/GiftModal';
 import EventModal from '@/components/chat/EventModal';
 import IntroFlow from '@/components/intro/IntroFlow';
-import ParticleCanvas from '@/components/landing/ParticleCanvas';
-import HavenBackground from '@/components/chat/HavenBackground';
-import PoetFigure2D from '@/components/chat/PoetFigure2D';
-import SquarePet from '@/components/chat/SquarePet';
+import dynamic from 'next/dynamic';
+
+const CompanionScene = dynamic(
+  () => import('@/components/companion/CompanionScene').then(m => ({ default: m.CompanionScene })),
+  { ssr: false },
+);
 
 export default function ChatPage() {
   return (
@@ -79,31 +81,19 @@ function ChatPageInner() {
     });
   }, [loadFromFile]);
 
-  // 根据阶段确定粒子颜色
-  const particleColors: Record<string, string[]> = {
-    intro: ['#00E5A0', '#33EDBA', '#7FF5D5'],
-    acquaintance: ['#00E5A0', '#FFB347', '#FFC870'],
-    familiar: ['#00E5A0', '#FFB347', '#C73E5C'],
-    close: ['#C73E5C', '#E84855', '#FFB347'],
-    bonded: ['#9CA3AF', '#6B7280', '#4B5563'],
-  };
-
   return (
     <div
-      className="h-dvh flex flex-col relative overflow-hidden"
+      className="h-dvh flex flex-col bg-abyss-900 relative overflow-hidden"
       data-phase={character.currentPhase}
     >
-      {/* Haven 风格风景背景 */}
-      <HavenBackground />
-
-      {/* 背景粒子 */}
-      <ParticleCanvas
-        colors={particleColors[character.currentPhase] || particleColors.intro}
-        count={20}
-        showLines={false}
+      {/* 背景图 */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url(/bg-haven.png)' }}
       />
+      <div className="absolute inset-0 bg-black/20" />
 
-      {/* 阶段环境光 — 平滑过渡 */}
+      {/* 环境光 — 阶段变化时平滑过渡 */}
       <div
         className="absolute inset-0 pointer-events-none z-particles transition-colors duration-1000"
         style={{ backgroundColor: 'var(--ambient-color)' }}
@@ -165,11 +155,8 @@ function ChatPageInner() {
           {/* 事件弹窗 */}
           <EventModal eventId={pendingEvent} onClose={clearEvent} />
 
-          {/* 诗人 2D 立绘 */}
-          <PoetFigure2D />
-
-          {/* 方形伴生体 — 可拖拽、展示模式可旋转 */}
-          <SquarePet />
+          {/* 3D 伴生体 */}
+          <CompanionScene />
 
           {/* Toast 提示 */}
           <AnimatePresence>

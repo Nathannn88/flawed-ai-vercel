@@ -5,7 +5,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useGameStore } from '@/store/gameStore';
-import HavenBackground from '@/components/chat/HavenBackground';
 
 /** 打字机效果文字显示 */
 function TypewriterText({ text, onComplete }: { text: string; onComplete?: () => void }) {
@@ -30,7 +29,7 @@ function TypewriterText({ text, onComplete }: { text: string; onComplete?: () =>
   }, [text, onComplete]);
 
   return (
-    <span className="font-cinis text-body-lg text-txt-primary leading-relaxed">
+    <span className="font-cinis text-body-lg text-txt-primary leading-relaxed whitespace-pre-line">
       {displayText}
       {displayText.length < text.length && (
         <span className="inline-block w-[2px] h-5 bg-jade-500 ml-0.5 animate-pulse-glow" />
@@ -53,7 +52,7 @@ const COLOR_OPTIONS = [
 const STEPS = [
   {
     id: 'greeting',
-    text: '……嗯。又一个人走进来了。\n\n你看起来——怎么说呢，像是那种会问"你是什么"的人。但你没有。这算是个好的开始。',
+    text: '……嗯。又一个人走进来了。大多数人见到我，第一句话就是"你是什么东西"。\n\n\n你没有这样做。这算是个不错的开始。',
     type: 'display' as const,
   },
   {
@@ -159,14 +158,16 @@ export default function IntroFlow({ onComplete }: IntroFlowProps) {
 
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center px-4 sm:px-6 z-content">
-      {/* Haven 风格风景背景 */}
-      <HavenBackground />
-      {/* 额外遮罩层 — 确保文字可读 */}
-      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+      {/* 背景图 */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url(/bg-haven.png)' }}
+      />
+      <div className="absolute inset-0 bg-black/35" />
       <AnimatePresence mode="wait">
         <motion.div
           key={step}
-          className="max-w-lg w-full flex flex-col items-center gap-8"
+          className="max-w-lg w-full flex flex-col items-center gap-8 relative z-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -207,7 +208,7 @@ export default function IntroFlow({ onComplete }: IntroFlowProps) {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    className="w-full bg-transparent border-b border-jade-500/30 pb-2 text-center text-body-lg text-txt-primary font-body outline-none focus:border-jade-500 transition-colors caret-jade-500"
+                    className="w-full bg-white/[0.06] border-b border-jade-500/40 pb-2 text-center text-body-lg text-txt-primary font-body outline-none focus:border-jade-500 transition-colors caret-jade-500"
                     placeholder="输入你的名字"
                     autoFocus
                   />
@@ -263,7 +264,7 @@ export default function IntroFlow({ onComplete }: IntroFlowProps) {
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={handleKeyDown}
                     rows={3}
-                    className="w-full bg-transparent border border-white/[0.06] rounded-card p-4 text-body text-txt-primary font-body outline-none focus:border-jade-500/40 transition-colors caret-jade-500 resize-none"
+                    className="w-full bg-white/[0.06] border border-white/[0.12] rounded-card p-4 text-body text-txt-primary font-body outline-none focus:border-jade-500/40 transition-colors caret-jade-500 resize-none"
                     placeholder={('placeholder' in currentStep ? currentStep.placeholder : '') ?? ''}
                     autoFocus
                   />

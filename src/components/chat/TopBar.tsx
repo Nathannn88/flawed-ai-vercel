@@ -38,7 +38,7 @@ export default function TopBar({ onUpload, onSave, onRecharge }: TopBarProps) {
 
   return (
     <motion.header
-      className="glass-panel-light h-14 flex items-center justify-between px-3 sm:px-4 z-topbar shrink-0"
+      className="h-14 flex items-center justify-between px-3 sm:px-4 z-topbar shrink-0 bg-white/30 backdrop-blur-[20px] border-b border-white/40"
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
@@ -47,7 +47,7 @@ export default function TopBar({ onUpload, onSave, onRecharge }: TopBarProps) {
       <div className="flex items-center gap-2 sm:gap-3">
         <ProgressRing value={character.familiarity} size={32} strokeWidth={2.5} />
         <div className="flex flex-col">
-          <span className="font-cinis text-body sm:text-body-lg text-txt-primary leading-tight">诗人</span>
+          <span className="font-cinis text-body sm:text-body-lg text-white drop-shadow-sm leading-tight">诗人</span>
           <span className={`text-overline uppercase tracking-widest ${phaseColor}`}>
             {phaseLabel}
           </span>
@@ -57,13 +57,13 @@ export default function TopBar({ onUpload, onSave, onRecharge }: TopBarProps) {
       {/* 右侧：金币余额 + 操作按钮 */}
       <div className="flex items-center gap-1 sm:gap-2">
         {/* 金币余额 */}
-        <span className="font-mono text-caption text-amber-500 mr-1 hidden sm:inline">
+        <span className="font-mono text-caption text-amber-600 mr-1 hidden sm:inline">
           {economy.goldBalance}
         </span>
         {/* 上传存档 */}
         <button
           onClick={onUpload}
-          className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-[10px] text-txt-secondary hover:text-jade-500 hover:bg-white/[0.04] transition-all focus-visible:outline-2 focus-visible:outline-jade-500 focus-visible:outline-offset-2"
+          className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-[10px] text-white/70 hover:text-white hover:bg-white/20 transition-all focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
           aria-label="导入存档"
           title="导入存档"
         >
@@ -77,7 +77,7 @@ export default function TopBar({ onUpload, onSave, onRecharge }: TopBarProps) {
         {/* 保存存档 */}
         <button
           onClick={onSave}
-          className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-[10px] text-txt-secondary hover:text-jade-500 hover:bg-white/[0.04] transition-all focus-visible:outline-2 focus-visible:outline-jade-500 focus-visible:outline-offset-2"
+          className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-[10px] text-white/70 hover:text-white hover:bg-white/20 transition-all focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
           aria-label="保存数据"
           title="保存数据"
         >
@@ -91,7 +91,7 @@ export default function TopBar({ onUpload, onSave, onRecharge }: TopBarProps) {
         {/* 充值 */}
         <button
           onClick={onRecharge}
-          className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-[10px] text-amber-500 hover:text-amber-400 hover:bg-amber-500/[0.06] transition-all focus-visible:outline-2 focus-visible:outline-amber-500 focus-visible:outline-offset-2"
+          className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-[10px] text-amber-600 hover:text-amber-500 hover:bg-white/20 transition-all focus-visible:outline-2 focus-visible:outline-amber-500 focus-visible:outline-offset-2"
           aria-label="充值金币"
           title="充值金币"
         >

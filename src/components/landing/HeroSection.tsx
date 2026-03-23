@@ -12,7 +12,7 @@ interface HeroSectionProps {
 function GlassNav() {
   return (
     <motion.nav
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-[40] glass-warm rounded-capsule px-6 py-2.5 flex items-center gap-6"
+      className="fixed top-4 inset-x-0 mx-auto w-fit z-[40] glass-warm rounded-capsule px-6 py-2.5 flex items-center gap-6"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.6 }}
@@ -58,7 +58,7 @@ export default function HeroSection({ onEnter }: HeroSectionProps) {
       <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-3xl">
         {/* 标签 */}
         <motion.div
-          className="glass-warm rounded-capsule px-4 py-1.5 mb-8"
+          className="glass-warm rounded-capsule px-4 py-1.5 mb-8 mx-auto"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
@@ -75,7 +75,7 @@ export default function HeroSection({ onEnter }: HeroSectionProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.7 }}
         >
-          不完美的对话。
+          审美系统的升级
         </motion.h1>
 
         {/* 副标题 */}

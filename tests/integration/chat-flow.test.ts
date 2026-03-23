@@ -114,8 +114,8 @@ describe('聊天流程集成', () => {
     const prompt = buildSystemPrompt(gameState);
 
     // system prompt 包含角色基础设定
-    expect(prompt).toContain('烬渊');
-    expect(prompt).toContain('谱渊');
+    expect(prompt).toContain('诗人');
+    expect(prompt).toContain('异质世界');
     // 包含用户信息
     expect(prompt).toContain('测试用户');
     expect(prompt).toContain('翡翠绿');
